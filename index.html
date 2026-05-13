@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匠焙 — 精品烘焙坊 · 手工麵包</title>
+    <style>
+        :root {
+            --cream: #f5f0e6;
+            --brown: #5d3a1a;
+            --gold: #c9a84c;
+            --white: #fffdf7;
+            --dark: #3e2510;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', 'Noto Serif TC', 'Times New Roman', serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.8;
+        }
+
+        /* Nav */
+        nav {
+            background: rgba(255,253,247,.95);
+            border-bottom: 1px solid rgba(93,58,26,.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brown);
+            letter-spacing: 3px;
+        }
+        .logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .btn-order {
+            background: var(--brown);
+            color: var(--white) !important;
+            padding: .5rem 1.4rem;
+            border-radius: 24px;
+            transition: background .2s;
+        }
+        .btn-order:hover { background: #4a2e14; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--cream) 0%, #e8dcc8 100%);
+            text-align: center;
+            padding: 6rem 2rem 5rem;
+        }
+        .hero h1 {
+            font-size: 3.4rem;
+            color: var(--brown);
+            margin-bottom: .8rem;
+            letter-spacing: 6px;
+        }
+        .hero .tagline {
+            font-size: 1.3rem;
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: .5rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 580px;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+            opacity: .8;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: var(--brown);
+            color: var(--white);
+            padding: .85rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(93,58,26,.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--brown);
+            margin-bottom: .3rem;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            text-align: center;
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        /* Product Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(93,58,26,.08);
+            transition: transform .3s;
+            border: 1px solid rgba(201,168,76,.15);
+        }
+        .product-card:hover { transform: translateY(-4px); }
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .product-card-body {
+            padding: 1.5rem;
+        }
+        .product-card-body h3 {
+            color: var(--brown);
+            margin-bottom: .4rem;
+            font-size: 1.15rem;
+        }
+        .product-card-body p {
+            font-size: .9rem;
+            opacity: .75;
+        }
+        .price {
+            display: block;
+            margin-top: .5rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        /* About */
+        .about {
+            background: var(--cream);
+            max-width: 100%;
+            border-radius: 0;
+        }
+        .about-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-content img {
+            width: 100%;
+            border-radius: 12px;
+        }
+        .about-text h3 {
+            color: var(--brown);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .feature-item {
+            padding: 2rem 1.5rem;
+            background: var(--cream);
+            border-radius: 12px;
+            border-top: 3px solid var(--gold);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: .8rem;
+        }
+        .feature-item h4 {
+            color: var(--brown);
+            margin-bottom: .4rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem;
+        }
+        footer p { opacity: .65; margin-top: .5rem; font-size: .92rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.4rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">匠<span>焙</span></div>
+    <ul class="nav-links">
+        <li><a href="#products">精選</a></li>
+        <li><a href="#about">關於</a></li>
+        <li><a href="#features">堅持</a></li>
+        <li><a href="#contact">門市</a></li>
+        <li><a href="#" class="btn-order">線上訂購</a></li>
+    </ul>
+</nav>
+
+<header class="hero">
+    <p class="tagline">— Artisan Bakery —</p>
+    <h1>匠焙</h1>
+    <p>以匠人之心，焙出每一份溫暖。手工揉製、低溫發酵，只為那一口純粹。</p>
+    <a href="#products" class="btn-primary">探索麵包</a>
+</header>
+
+<section id="products">
+    <h2>匠人手作</h2>
+    <p class="subtitle">每日新鮮出爐 · 限量供應</p>
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="https://source.unsplash.com/featured/?artisan-bread" alt="歐式酸麵包" loading="lazy">
+            <div class="product-card-body">
+                <h3>天然酵母歐包</h3>
+                <p>自養酵母、24小時低溫發酵，外酥內軟，麥香濃郁</p>
+                <span class="price">NT$180</span>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://source.unsplash.com/featured/?croissants" alt="法國可頌" loading="lazy">
+            <div class="product-card-body">
+                <h3>萊思克可頌</h3>
+                <p>法國 AOP 發酵奶油、三折三疊，層層酥脆</p>
+                <span class="price">NT$95</span>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://source.unsplash.com/featured/?bakery,pastry" alt="手工糕點" loading="lazy">
+            <div class="product-card-body">
+                <h3>瑪德蓮禮盒</h3>
+                <p>蜂蜜檸檬、抹茶、巧克力三種風味，下午茶首選</p>
+                <span class="price">NT$420</span>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://source.unsplash.com/featured/?coffee,espresso" alt="精品咖啡" loading="lazy">
+            <div class="product-card-body">
+                <h3>單品手沖咖啡</h3>
+                <p>衣索比亞耶加雪菲 · 花香柑橘調 · 搭配麵包折 NT$30</p>
+                <span class="price">NT$150</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="about-content">
+        <img src="https://source.unsplash.com/featured/?bakery,interior" alt="匠焙烘焙坊內景" loading="lazy">
+        <div class="about-text">
+            <h3>🥖 關於匠焙</h3>
+            <p>匠焙，始於一位旅法歸國的麵包師傅對麵粉的癡迷。我們相信，一顆好的麵包，需要時間、溫度、與雙手對話。</p>
+            <p style="margin-top:1rem">每日凌晨三點，當城市還在沉睡，匠焙的烤爐已經點燃。選用日本日清麵粉、法國發酵奶油，堅持無添加、無改良劑，只為呈現食材最原始的風味。</p>
+            <p style="margin-top:1rem;font-weight:600;color:var(--brown)">🥐 手工揉製 · 低溫發酵 · 每日限量</p>
+        </div>
+    </div>
+</section>
+
+<section id="features">
+    <h2>匠焙堅持</h2>
+    <p class="subtitle">每一個細節，都是對麵包的敬意</p>
+    <div class="features-grid">
+        <div class="feature-item">
+            <div class="feature-icon">🌾</div>
+            <h4>精選麵粉</h4>
+            <p>嚴選日本日清、法國 T65 麵粉，保留麥粒原始風味與營養。</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">⏳</div>
+            <h4>低溫發酵</h4>
+            <p>18-24 小時低溫長時間發酵，讓麵團自然熟成，風味更深層。</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🤲</div>
+            <h4>手感溫度</h4>
+            <p>每一顆麵包皆由師傅親手整形，感受麵團的呼吸與生命力。</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>門市資訊</h2>
+    <p class="subtitle">歡迎來店品味，感受剛出爐的溫暖</p>
+    <div class="features-grid">
+        <div class="feature-item">
+            <div class="feature-icon">📍</div>
+            <h4>地址</h4>
+            <p>台中市西區烘焙街 42 號</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🕐</div>
+            <h4>營業時間</h4>
+            <p>每日 07:00 – 19:00<br>麵包出爐：07:30 / 11:30</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">📞</div>
+            <h4>聯絡我們</h4>
+            <p>04-2378-6666<br>hello@artisanbake.tw</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="logo" style="color:var(--white)">匠<span style="color:var(--gold)">焙</span></div>
+    <p>© 2025 匠焙 Artisan Bake · 精品烘焙坊 · 每日新鮮出爐</p>
+</footer>
+
+</body>
+</html>
